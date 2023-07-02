@@ -93,7 +93,7 @@ public class OrganicDog extends SuperAnimal {
             if (health <= 0) {
                 health = 0;
             }
-            System.out.println("You are not meeting the pets needs.");
+            System.out.println("You are not meeting the organic pet needs. Make sure to clean, feed, water, and play with them.");
         }
     }
 
@@ -105,7 +105,7 @@ public class OrganicDog extends SuperAnimal {
                 happiness = 100;
             }
         } else {
-            System.out.println("The pets are not happy.");
+            System.out.println("The organic pets are not happy. Make sure to clean, feed, water, and play with them.");
         }
     }
 

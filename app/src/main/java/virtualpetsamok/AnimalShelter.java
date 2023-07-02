@@ -1,7 +1,11 @@
 package virtualpetsamok;
 
+import java.util.Scanner;
+
 public class AnimalShelter {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        boolean quit = false;
         AnimalMap managePets = new AnimalMap();
         SuperAnimal cat1 = new OrganicCat("Giorno", "golden eyes, bengal cat");
         managePets.addPet(cat1.getName(), cat1);
@@ -19,5 +23,147 @@ public class AnimalShelter {
         managePets.addPet(dog3.getName(), dog3);
         SuperAnimal dog4 = new RoboticDog("Narancia", "blue eyed cat, pink metallic coating");
         managePets.addPet(dog4.getName(), dog4);
+        do {
+            System.out.println("Please enter a number to make a selection:");
+            System.out.println(" 1 -- Feed all organic pets");
+            System.out.println(" 2 -- Give water to all organic pets");
+            System.out.println(" 3 -- Walk all organic dogs");
+            System.out.println(" 4 -- Cuddle all organic cats");
+            System.out.println(" 5 -- Clean all dog cages");
+            System.out.println(" 6 -- Clean the shelter's litter box");
+            System.out.println(" 7 -- Adopt a robotic or organic animal");
+            System.out.println(" 8 -- Surrender a robotic or organic animal to the shelter");
+            System.out.println(" 9 -- Walk one particular organic dog");
+            System.out.println("10 -- Cuddle one organic cat");
+            System.out.println("11 -- Oil all robotic pets");
+            System.out.println("12 -- Provide maintenance for all robotic pets");
+            System.out.println("13 -- Exit");
+            int userInput = input.nextInt();
+            input.nextLine();
+            managePets.runAllTicks();
+            if (userInput == 1) {
+                System.out.println("Thank you for feeding all the organic cats & dogs!");
+                managePets.giveAllOrganicAnimalsFood();
+            } else if (userInput == 2) {
+                System.out.println("Thank you for giving water to all the organic cats & dogs!");
+                managePets.giveAllOrganicAnimalsWater();
+            } else if (userInput == 3) {
+                System.out.println("Thank you for walking all the organic dogs!");
+                managePets.WalkAllOrganicDogs();
+            } else if (userInput == 4) {
+                System.out.println("Thank you for cuddling all the organic cats!");
+                managePets.cuddleAllOrganicCats();
+            } else if (userInput == 5) {
+                System.out.println("Thank you for cleaning all the organic dog cages!");
+                managePets.CleanAllDogCages();
+            } else if (userInput == 6) {
+                System.out.println("Thank you for cleaning the organic cat litter box!");
+                managePets.CleanCatLitterBox();
+            } else if (userInput == 7) {
+                System.out.println("Great! Please enter the name of the pet you wish to adopt");
+                String adopteeName = input.nextLine();
+                managePets.adoptPet(adopteeName);
+                System.out.println("Please stop at the front desk to finalize the adoption of " + adopteeName);
+            } else if (userInput == 8) {
+                System.out.println("Please enter the name of the pet you are surrendering");
+                String newPetForAdoption = input.nextLine();
+                System.out.println("Enter the description of the pet:");
+                String petDescription = input.nextLine();
+                System.out.println("Please enter the appropriate number to indicate the pet's species:");
+                System.out.println("1 -- Organic Dog, 2 -- Organic Cat, 3 -- Robotic Dog, or 4 -- Robotic Cat");
+                int petType = input.nextInt();
+                SuperAnimal surrenderedPet;
+                if (petType == 1) {
+                    surrenderedPet = new OrganicDog(newPetForAdoption, petDescription);
+                } else if (petType == 2) {
+                    surrenderedPet = new OrganicCat(newPetForAdoption, petDescription);
+                } else if (petType == 3) {
+                    surrenderedPet = new RoboticDog(newPetForAdoption, petDescription);
+                } else if (petType == 4) {
+                    surrenderedPet = new RoboticCat(newPetForAdoption, petDescription);
+                } else {
+                    System.out.println("Invalid pet type.");
+                    return;
+                }
+                managePets.addPet(newPetForAdoption, surrenderedPet);
+            } else if (userInput == 9) {
+                System.out.println("Please enter the name of the organic dog you wish to walk");
+                String dogToWalk = input.nextLine();
+                managePets.walkOneDog(dogToWalk);
+                System.out.println("Thank you for walking " + dogToWalk);
+            } else if (userInput == 10) {
+                System.out.println("Please enter the name of the organic cat you wish to cuddle");
+                String catToCuddle = input.nextLine();
+                managePets.cuddleOneCat(catToCuddle);
+                System.out.println("Thank you for cuddling " + catToCuddle);
+            } else if (userInput == 11) {
+                System.out.println("Thank you for giving all the robotic pets oil");
+                managePets.giveAllRobotsOil();
+            } else if (userInput == 12) {
+                System.out.println("Thank you for providing maintenance for all robotic pets");
+                managePets.giveAllRobotsMaintenance();
+            } else if (userInput == 13) {
+                System.out.println(
+                        "Thank you for your interest. Please feel free to call if you ever want to volunteer!");
+                quit = true;
+            } else {
+                System.out.println("Invalid input. Please enter a number between 1 and 13.");
+            }
+            screenDisplay(managePets);
+        } while (!quit);
+        input.close();
+    }
+
+    public static void screenDisplay(AnimalMap managePets) {
+        int maxNameLength = 20;
+        int maxDescriptionLength = 40;
+        int numTabsForHealth = 1;
+        int numTabsForHappiness = 1;
+        int numTabsForSpecialMeasures = 2;
+
+        System.out.print("Name" + "\t".repeat(maxNameLength / 8));
+        System.out.print("Description" + "\t".repeat(maxDescriptionLength / 8));
+        System.out.print("Health" + "\t".repeat(numTabsForHealth));
+        System.out.print("Happiness" + "\t".repeat(numTabsForHappiness));
+        System.out.print("Special Measures" + "\t".repeat(numTabsForSpecialMeasures));
+        System.out.println();
+
+        System.out.println("-".repeat(150));
+
+        for (SuperAnimal pet : managePets.getPetListMap().values()) {
+            String petName = evenSpacing(pet.getName(), maxNameLength);
+            String petDescription = evenSpacing(pet.getDescription(), maxDescriptionLength);
+
+            System.out.print(petName + petDescription
+                    + pet.getHealth() + "\t"
+                    + pet.getHappiness() + "\t\t");
+
+            if (pet instanceof OrganicDog) {
+                OrganicDog dog = (OrganicDog) pet;
+                System.out.println("Hunger: " + dog.getHunger()
+                        + "\tThirst: " + dog.getThirst()
+                        + "\tBoredom: " + dog.getBoredom());
+            } else if (pet instanceof OrganicCat) {
+                OrganicCat cat = (OrganicCat) pet;
+                System.out.println("Hunger: " + cat.getHunger()
+                        + "\tThirst: " + cat.getThirst()
+                        + "\tBoredom: " + cat.getBoredom());
+            } else if (pet instanceof RoboticDog) {
+                RoboticDog dog = (RoboticDog) pet;
+                System.out.println("Oil Level: " + dog.getOilLevel());
+            } else if (pet instanceof RoboticCat) {
+                RoboticCat cat = (RoboticCat) pet;
+                System.out.println("Oil Level: " + cat.getOilLevel());
+            } else {
+                System.out.println("Error compiling list. Review types.");
+            }
+        }
+
+        System.out.println("-".repeat(150));
+    }
+
+    public static String evenSpacing(String inputStr, int maxLength) {
+        int spacing = Math.max(0, maxLength - inputStr.length());
+        return inputStr + " ".repeat(spacing);
     }
 }

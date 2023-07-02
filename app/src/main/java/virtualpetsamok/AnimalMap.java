@@ -1,27 +1,62 @@
 package virtualpetsamok;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AnimalMap {
     private HashMap<String, SuperAnimal> petListMap = new HashMap<>();
 
     public void addPet(String name, SuperAnimal pet) {
-        petListMap.put(name, pet);
+        String correctedName = name.trim().toLowerCase();
+        petListMap.put(correctedName, pet);
     }
 
     public SuperAnimal getPet(String name) {
-        return petListMap.get(name);
+        String correctedName = name.trim().toLowerCase();
+        return petListMap.get(correctedName);
     }
 
-    public SuperAnimal removePet(String name) {
-        return petListMap.remove(name);
+    public SuperAnimal adoptPet(String name) {
+        String correctedName = name.trim().toLowerCase();
+        return petListMap.remove(correctedName);
     }
 
-    public void WalkAllOrgDogs() {
+    public void walkOneDog(String name) {
+        String correctedName = name.trim().toLowerCase();
+        SuperAnimal pet = getPet(correctedName);
+        if (pet instanceof OrganicDog) {
+            OrganicDog dog = (OrganicDog) pet;
+            dog.walk();
+        } else {
+            System.out.println("Does not compute. Walking is only for organic dogs.");
+        }
+    }
+
+    public void WalkAllOrganicDogs() {
         for (SuperAnimal pet : petListMap.values()) {
             if (pet instanceof OrganicDog) {
                 OrganicDog dog = (OrganicDog) pet;
                 dog.walk();
+            }
+        }
+    }
+
+    public void cuddleOneCat(String name) {
+        String correctedName = name.trim().toLowerCase();
+        SuperAnimal pet = getPet(correctedName);
+        if (pet instanceof OrganicCat) {
+            OrganicCat cat = (OrganicCat) pet;
+            cat.cuddle();
+        } else {
+            System.out.println("Does not compute. Cuddling is only for organic cats.");
+        }
+    }
+
+    public void cuddleAllOrganicCats() {
+        for (SuperAnimal pet : petListMap.values()) {
+            if (pet instanceof OrganicCat) {
+                OrganicCat cat = (OrganicCat) pet;
+                cat.cuddle();
             }
         }
     }
@@ -106,34 +141,44 @@ public class AnimalMap {
     }
 
     public void printAllPets() {
+    for (SuperAnimal pet : petListMap.values()) {
+    System.out.println("Name: " + pet.getName());
+    System.out.println("Health: " + pet.getHealth());
+    System.out.println("Happiness: " + pet.getHappiness());
+
+    if (pet instanceof OrganicCat) {
+    OrganicCat orgCat = (OrganicCat) pet;
+    System.out.println("Hunger: " + orgCat.getHunger());
+    System.out.println("Thirst: " + orgCat.getThirst());
+    System.out.println("Boredom: " + orgCat.getBoredom());
+
+    } else if (pet instanceof OrganicDog) {
+    OrganicDog orgDog = (OrganicDog) pet;
+    System.out.println("Hunger: " + orgDog.getHunger());
+    System.out.println("Thirst: " + orgDog.getThirst());
+    System.out.println("Boredom: " + orgDog.getBoredom());
+
+    } else if (pet instanceof RoboticCat) {
+    RoboticCat roboCat = (RoboticCat) pet;
+    System.out.println("Oil Level: " + roboCat.getOilLevel());
+    System.out.println("Maintenance Level: " + roboCat.getMaintenance());
+
+    } else if (pet instanceof RoboticDog) {
+    RoboticDog roboDog = (RoboticDog) pet;
+    System.out.println("Oil Level: " + roboDog.getOilLevel());
+    System.out.println("Maintenance Level: " + roboDog.getMaintenance());
+
+    }
+    }
+    }
+
+    public Map<String, SuperAnimal> getPetListMap() {
+        return petListMap;
+    }
+
+    public void runAllTicks() {
         for (SuperAnimal pet : petListMap.values()) {
-            System.out.println("Name: " + pet.getName());
-            System.out.println("Health: " + pet.getHealth());
-            System.out.println("Happiness: " + pet.getHappiness());
-
-            if (pet instanceof OrganicCat) {
-                OrganicCat orgCat = (OrganicCat) pet;
-                System.out.println("Hunger: " + orgCat.getHunger());
-                System.out.println("Thirst: " + orgCat.getThirst());
-                System.out.println("Boredom: " + orgCat.getBoredom());
-
-            } else if (pet instanceof OrganicDog) {
-                OrganicDog orgDog = (OrganicDog) pet;
-                System.out.println("Hunger: " + orgDog.getHunger());
-                System.out.println("Thirst: " + orgDog.getThirst());
-                System.out.println("Boredom: " + orgDog.getBoredom());
-
-            } else if (pet instanceof RoboticCat) {
-                RoboticCat roboCat = (RoboticCat) pet;
-                System.out.println("Oil Level: " + roboCat.getOilLevel());
-                System.out.println("Maintenance Level: " + roboCat.getMaintenance());
-
-            } else if (pet instanceof RoboticDog) {
-                RoboticDog roboDog = (RoboticDog) pet;
-                System.out.println("Oil Level: " + roboDog.getOilLevel());
-                System.out.println("Maintenance Level: " + roboDog.getMaintenance());
-
-            }
+            pet.tick();
         }
     }
 }
