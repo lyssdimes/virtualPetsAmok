@@ -30,22 +30,19 @@ public class OrganicCat extends SuperAnimal {
     }
 
     public void cuddle() {
-        boredom -= 10;
+        boredom -= 20;
         if (boredom <= 0) {
             boredom = 0;
         }
-        happiness += 10;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
     }
 
     public void cleanLitterBox() {
-        cleanlinessLevel += 10;
-        if (cleanlinessLevel >= 100) {
-            cleanlinessLevel = 100;
-        }
-        health += 10;
+        cleanlinessLevel = 100;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
@@ -53,15 +50,15 @@ public class OrganicCat extends SuperAnimal {
 
     @Override
     public void feedOrOil() {
-        hunger -= 10;
+        hunger -= 20;
         if (hunger <= 0) {
             hunger = 0;
         }
-        health += 5;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
-        happiness += 5;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
@@ -69,15 +66,15 @@ public class OrganicCat extends SuperAnimal {
 
     @Override
     public void drinkOrMaintenance() {
-        thirst -= 10;
+        thirst -= 20;
         if (thirst <= 0) {
             thirst = 0;
         }
-        health += 5;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
-        happiness += 5;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
@@ -90,30 +87,45 @@ public class OrganicCat extends SuperAnimal {
             if (health <= 0) {
                 health = 0;
             }
-            System.out.println("You are not meeting the organic pet needs. Make sure to clean, feed, water, and play with them.");
         }
     }
 
     @Override
     public void increaseHappiness() {
         if (cleanlinessLevel >= 50 && hunger <= 50 && thirst <= 50 && boredom <= 50) {
-            happiness += 10;
+            happiness += 30;
             if (happiness >= 100) {
                 happiness = 100;
             }
-        } else {
-            System.out.println("The organic pets are not happy. Make sure to clean, feed, water, and play with them.");
-        }
+        }   
     }
 
     @Override
     public void tick() {
         health -= 5;
+        if (health <= 0) {
+            health = 0;
+        }
         happiness -= 5;
+        if (happiness <= 0) {
+            happiness = 0;
+        }
         cleanlinessLevel -= 5;
+        if (cleanlinessLevel <= 0) {
+            cleanlinessLevel = 0;
+        }
         thirst += 5;
+        if (thirst <= 0) {
+            thirst = 0;
+        }
         hunger += 5;
+        if (hunger <= 0){
+            hunger = 0;
+        }
         boredom += 5;
+        if (boredom >= 100) {
+            boredom = 100;
+        }
     }
 
 }

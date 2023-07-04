@@ -6,25 +6,22 @@ public class RoboticDog extends SuperAnimal {
 
     public RoboticDog(String name, String description) {
         super(name, true, description, 100, 100);
-        this.maintenance = 90;
+        this.maintenance = 100;
         this.oilLevel = 100;
     }
 
-    public int getMaintenance(){
+    public int getMaintenance() {
         return maintenance;
     }
 
-    public int getOilLevel(){
+    public int getOilLevel() {
         return oilLevel;
     }
 
     @Override
     public void feedOrOil() {
-        oilLevel += 10;
-        if (oilLevel >= 100) {
-            oilLevel = 100;
-        }
-        happiness += 10;
+        oilLevel = 100;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
@@ -32,12 +29,15 @@ public class RoboticDog extends SuperAnimal {
 
     @Override
     public void drinkOrMaintenance() {
-        maintenance += 10;
-        if (maintenance >= 100) {
-            maintenance = 100;
+        maintenance = 100;
+        health += 30;
+        if (health >= 100) {
+            health = 100;
         }
-        health += 10;
-        happiness += 10;
+        happiness += 20;
+        if (happiness >= 100) {
+            happiness = 100;
+        }
     }
 
     @Override
@@ -46,28 +46,39 @@ public class RoboticDog extends SuperAnimal {
             health -= 10;
             if (health <= 0) {
                 health = 0;
+            } else {
+                health += 20;
             }
-            System.out.println("Robotic pet health is decreasing. Please provide oil and maintain them.");
         }
     }
 
     @Override
     public void increaseHappiness() {
         if (oilLevel >= 50 && maintenance >= 50) {
-            happiness += 10;
+            happiness += 30;
             if (happiness >= 100) {
                 happiness = 100;
             }
-        } else {
-            System.out.println("The robotic pets are not happy. Please provide oil and maintain them.");
-        }
+        } 
     }
 
     @Override
     public void tick() {
         health -= 5;
+        if (health <= 0) {
+            health = 0;
+        }
         happiness -= 5;
+        if (happiness <= 0) {
+            happiness = 0;
+        }
         maintenance -= 5;
+        if (maintenance <= 0) {
+            maintenance = 0;
+        }
         oilLevel -= 5;
+        if (oilLevel <= 0) {
+            oilLevel = 0;
+        }
     }
 }
