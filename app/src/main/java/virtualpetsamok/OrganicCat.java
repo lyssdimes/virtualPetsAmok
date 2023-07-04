@@ -13,6 +13,14 @@ public class OrganicCat extends SuperAnimal {
         this.cleanlinessLevel = 100;
     }
 
+    public OrganicCat(String name, String description, int initialBoredom, int initialCleanliness, int initialHealth, int initialHappiness) {
+        super(name, false, description, 100, 100);
+        this.boredom = initialBoredom;
+        this.cleanlinessLevel = initialCleanliness;
+        this.health = initialHealth;
+        this.happiness = initialHappiness;
+    }
+
     public int getHunger() {
         return hunger;
     }
@@ -97,7 +105,7 @@ public class OrganicCat extends SuperAnimal {
             if (happiness >= 100) {
                 happiness = 100;
             }
-        }   
+        }
     }
 
     @Override
@@ -119,7 +127,7 @@ public class OrganicCat extends SuperAnimal {
             thirst = 0;
         }
         hunger += 5;
-        if (hunger <= 0){
+        if (hunger <= 0) {
             hunger = 0;
         }
         boredom += 5;

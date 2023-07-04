@@ -51,7 +51,7 @@ public class AnimalShelter {
                 managePets.giveAllOrganicAnimalsWater();
             } else if (userInput == 3) {
                 System.out.println("Thank you for walking all the organic dogs!");
-                managePets.WalkAllOrganicDogs();
+                managePets.walkAllOrganicDogs();
             } else if (userInput == 4) {
                 System.out.println("Thank you for cuddling all the organic cats!");
                 managePets.cuddleAllOrganicCats();
