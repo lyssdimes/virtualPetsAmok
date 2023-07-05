@@ -63,7 +63,7 @@ public class AnimalMap {
         }
     }
 
-    public void CleanAllDogCages() {
+    public void cleanAllDogCages() {
         for (SuperAnimal pet : petListMap.values()) {
             if (pet instanceof OrganicDog) {
                 OrganicDog dog = (OrganicDog) pet;
@@ -72,7 +72,7 @@ public class AnimalMap {
         }
     }
 
-    public void CleanCatLitterBox() {
+    public void cleanCatLitterBox() {
         for (SuperAnimal pet : petListMap.values()) {
             if (pet instanceof OrganicCat) {
                 OrganicCat cat = (OrganicCat) pet;

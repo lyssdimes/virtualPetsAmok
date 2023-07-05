@@ -30,7 +30,7 @@ public class RoboticCat extends SuperAnimal {
     @Override
     public void feedOrOil() {
         oilLevel = 100;
-        happiness += 10;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
@@ -39,11 +39,11 @@ public class RoboticCat extends SuperAnimal {
     @Override
     public void drinkOrMaintenance() {
         maintenance = 100;
-        health += 10;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
-        happiness += 10;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }

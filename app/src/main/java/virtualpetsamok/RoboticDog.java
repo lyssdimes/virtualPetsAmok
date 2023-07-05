@@ -39,7 +39,7 @@ public class RoboticDog extends SuperAnimal {
     @Override
     public void drinkOrMaintenance() {
         maintenance = 100;
-        health += 30;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }

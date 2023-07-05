@@ -57,10 +57,10 @@ public class AnimalShelter {
                 managePets.cuddleAllOrganicCats();
             } else if (userInput == 5) {
                 System.out.println("Thank you for cleaning all the organic dog cages!");
-                managePets.CleanAllDogCages();
+                managePets.cleanAllDogCages();
             } else if (userInput == 6) {
                 System.out.println("Thank you for cleaning the organic cat litter box!");
-                managePets.CleanCatLitterBox();
+                managePets.cleanCatLitterBox();
             } else if (userInput == 7) {
                 System.out.println("Great! Please enter the name of the pet you wish to adopt");
                 String adopteeName = input.nextLine();

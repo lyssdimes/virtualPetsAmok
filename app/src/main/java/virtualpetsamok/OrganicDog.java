@@ -12,12 +12,15 @@ public class OrganicDog extends SuperAnimal {
         this.cleanlinessLevel = 100;
     }
 
-    public OrganicDog(String name, String description, int initialBoredom, int initialCleanliness, int initialHealth, int initialHappiness) {
+    public OrganicDog(String name, String description, int initialBoredom, int initialCleanliness, int initialHealth,
+            int initialHappiness, int initialHunger, int initialThirst) {
         super(name, false, description, 100, 100);
         this.boredom = initialBoredom;
         this.cleanlinessLevel = initialCleanliness;
         this.health = initialHealth;
         this.happiness = initialHappiness;
+        this.hunger = initialHunger;
+        this.thirst = initialThirst;
     }
 
     public int getHunger() {
@@ -66,11 +69,11 @@ public class OrganicDog extends SuperAnimal {
         if (hunger <= 0) {
             hunger = 0;
         }
-        health += 5;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
-        happiness += 5;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }
@@ -82,11 +85,11 @@ public class OrganicDog extends SuperAnimal {
         if (thirst <= 0) {
             thirst = 0;
         }
-        health += 5;
+        health += 20;
         if (health >= 100) {
             health = 100;
         }
-        happiness += 5;
+        happiness += 20;
         if (happiness >= 100) {
             happiness = 100;
         }

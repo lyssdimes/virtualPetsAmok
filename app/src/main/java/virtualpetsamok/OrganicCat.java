@@ -13,12 +13,14 @@ public class OrganicCat extends SuperAnimal {
         this.cleanlinessLevel = 100;
     }
 
-    public OrganicCat(String name, String description, int initialBoredom, int initialCleanliness, int initialHealth, int initialHappiness) {
+    public OrganicCat(String name, String description, int initialBoredom, int initialCleanliness, int initialHealth, int initialHappiness, int initialHunger, int initialThirst) {
         super(name, false, description, 100, 100);
         this.boredom = initialBoredom;
         this.cleanlinessLevel = initialCleanliness;
         this.health = initialHealth;
         this.happiness = initialHappiness;
+        this.hunger = initialHunger;
+        this.thirst = initialThirst;
     }
 
     public int getHunger() {
