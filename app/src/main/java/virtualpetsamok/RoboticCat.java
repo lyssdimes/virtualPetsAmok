@@ -11,7 +11,8 @@ public class RoboticCat extends SuperAnimal {
         this.oilLevel = 100;
     }
 
-    public RoboticCat(String name, String description, int initialHealth, int initialHappiness, int initialMaintenance, int initialOilLevel) {
+    public RoboticCat(String name, String description, int initialHealth, int initialHappiness, int initialMaintenance,
+            int initialOilLevel) {
         super(name, true, description, 100, 100);
         this.health = initialHealth;
         this.happiness = initialHappiness;
@@ -55,9 +56,9 @@ public class RoboticCat extends SuperAnimal {
             health -= 10;
             if (health <= 0) {
                 health = 0;
-            } else {
-                health += 20;
             }
+        } else {
+            health += 20;
         }
     }
 

@@ -228,11 +228,11 @@ class AnimalMapTest {
     public void testRunAllDecreaseHealth() {
         OrganicDog dog1 = new OrganicDog("Cinnamon", "pretty fur", 60, 60, 70, 80, 40, 10);
         OrganicCat cat1 = new OrganicCat("Chaos", "lots of attitude", 40, 80, 70, 90, 20, 10);
-        RoboticDog robo1 = new RoboticDog("Charles", "smart robo dog", 40, 60, 30, 20);
+        RoboticDog robo1 = new RoboticDog("CJ", "smart robo dog", 40, 60, 30, 20);
         RoboticCat robo2 = new RoboticCat("Rainbow", "wild and free", 60, 90, 95, 70);
         animalMap.addPet("Cinnamon", dog1);
         animalMap.addPet("Chaos", cat1);
-        animalMap.addPet("Charles", robo1);
+        animalMap.addPet("CJ", robo1);
         animalMap.addPet("Rainbow", robo2);
         animalMap.runAllDecreaseHealth();
         assertEquals(60, dog1.getHealth());
